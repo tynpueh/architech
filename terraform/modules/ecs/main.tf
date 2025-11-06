@@ -1,6 +1,8 @@
 resource "aws_ecs_cluster" "this" {
     name = var.cluster_name
-    tags = var.tags
+    tags = {
+        Name = "${var.cluster_name}-${var.environment}"
+    }
 
 }
 
@@ -41,6 +43,8 @@ resource "aws_ecs_service" "app" {
         assign_public_ip = true
     }
 
-    tags = var.tags
+    tags = {
+        Name = "${var.cluster_name}-app-service-${var.environment}"
+    }
   
 }

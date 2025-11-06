@@ -4,11 +4,10 @@ variable "cluster_name" {
   
 }
 
-variable "tags" {
-    description = "A map of tags to assign to the ECS cluster"
-    type        = map(string)
-    default     = {}
-  
+variable "environment" {
+    description = "The environment for the ECS cluster"
+    type        = string
+
 }
 variable "subnets" {
     description = "A list of subnet IDs for the ECS service"

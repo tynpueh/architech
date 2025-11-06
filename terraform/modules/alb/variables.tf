@@ -23,3 +23,8 @@ variable "certificate_arn"  {
     type        = string
   
 }
+
+variable "environment" {
+    description = "The environment for the ALB"
+    type        = string
+}
