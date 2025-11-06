@@ -2,7 +2,7 @@ variable "alb_name" {
     description = "The name of the Application Load Balancer"
     type        = string
 }
-variable "subnet_ids" {
+variable "subnets" {
     description = "A list of subnet IDs to attach to the ALB"
     type        = list(string)
 }
