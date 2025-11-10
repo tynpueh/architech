@@ -20,5 +20,6 @@ module "ecs" {
     environment = "stg"
     subnets = [module.vpc.private_subnet_id]
     security_groups = [module.alb.alb_security_group_id]
+    alb_target_group_arn = module.alb.alb_target_group_arn
   
 }

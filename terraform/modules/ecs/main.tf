@@ -43,6 +43,15 @@ resource "aws_ecs_service" "app" {
         assign_public_ip = true
     }
 
+    dynamic "load_balancer" {
+        for_each = var.alb_target_group_arn == "" ? [] : [var.alb_target_group_arn]
+        content {
+            target_group_arn = load_balancer.value
+            container_name   = var.container_name
+            container_port   = var.container_port
+        }
+    }
+
     tags = {
         Name = "${var.cluster_name}-app-service-${var.environment}"
     }

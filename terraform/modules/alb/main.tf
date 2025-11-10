@@ -8,7 +8,28 @@ resource "aws_lb" "app" {
     tags = {
         Name = "${var.alb_name}-${var.environment}"
     }
+
+}
+
+resource "aws_lb_target_group" "app_tg" {
+    name        = "${var.alb_name}-tg"
+    port        = 80
+    protocol    = "HTTP"
+    target_type = "ip"
+    vpc_id      = var.vpc_id
+
+    health_check {
+        interval            = 30
+        path                = "/"
+        healthy_threshold   = 2
+        unhealthy_threshold = 2
+        matcher             = "200-399"
+        timeout             = 5
+        protocol            = "HTTP"
     }
+
+    tags = merge(var.tags, { Name = "${var.alb_name}-tg-${var.environment}" })
+}
 
 resource "aws_security_group" "alb" {
     name        = "${var.alb_name}-sg"
@@ -57,30 +78,11 @@ resource "aws_lb_listener" "https_listener" {
     ssl_policy       = "ELBSecurityPolicy-2016-08"
     certificate_arn  = var.certificate_arn
     default_action {
-        type             = "fixed-response"
-        fixed_response {
-            content_type = "text/plain"
-            message_body = "Hello from ALB"
-            status_code  = "200"
+        type = "forward"
+        forward {
+            target_group {
+                arn = aws_lb_target_group.app_tg.arn
+            }
         }
     }
-}
-
-resource "aws_lb_listener_rule" "https_listener_rule" {
-    listener_arn = aws_lb_listener.https_listener.arn
-    priority     = 100
-    action {
-        type             = "fixed-response"
-        fixed_response {
-            content_type = "text/plain"
-            message_body = "Hello from ALB Listener Rule"
-            status_code  = "200"
-        }
-    }
-    condition {
-        path_pattern {
-            values = ["/*"]
-        }
-    }
-  
 }
