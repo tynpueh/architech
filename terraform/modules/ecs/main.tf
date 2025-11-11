@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "app" {
             essential = true
             portMappings = [
                 {
-                    containerPort = 80
+                    containerPort = 8000
                     hostPort      = 80
                     protocol      = "tcp"
                 }
