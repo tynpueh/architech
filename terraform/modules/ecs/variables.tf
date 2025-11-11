@@ -38,6 +38,7 @@ variable "container_port" {
     default     = 80
 }
 
-# variable "ecr_repo_url" {
-#   description = "ECR repository URL (without tag)"
-# }
+variable "container_image" {
+  description = "Container image to use for the ECS task"
+  type        = string
+}

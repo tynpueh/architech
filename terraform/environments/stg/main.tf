@@ -21,12 +21,13 @@ module "ecs" {
     subnets = [module.vpc.private_subnet_id]
     security_groups = [module.alb.alb_security_group_id]
     alb_target_group_arn = module.alb.alb_target_group_arn
+    container_image = "${var.repository_name}:${var.version_image}"
   
 }
 
 module "ecr" {
     source = "../../modules/ecr"
-    repository_name = "stg-app-repo"
+    repository_name = "app"
     environment = "stg"
   
 }

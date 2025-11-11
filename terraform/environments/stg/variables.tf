@@ -18,3 +18,14 @@ variable "certificate_arn" {
   type        = string
   
 }
+
+variable "repository_name" {
+  description = "Container image to deploy to ECS"
+  type        = string  
+  
+}
+
+variable "version_image" {
+  description = "Version tag for the container image"
+  type        = string  
+}

@@ -30,7 +30,7 @@ RUN python -m pip install --no-index --no-cache-dir --find-links=/wheels -r requ
     rm -rf /wheels /root/.cache/pip
 
 # Copy application code and set ownership to the app user (requires BuildKit for --chown)
-COPY --chown=app:app app/ .
+COPY --chown=app:app . .
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
