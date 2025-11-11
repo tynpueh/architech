@@ -23,3 +23,10 @@ module "ecs" {
     alb_target_group_arn = module.alb.alb_target_group_arn
   
 }
+
+module "ecr" {
+    source = "../../modules/ecr"
+    repository_name = "stg-app-repo"
+    environment = "stg"
+  
+}

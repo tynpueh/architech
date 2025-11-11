@@ -28,3 +28,10 @@ variable "environment" {
     description = "The environment for the ALB"
     type        = string
 }
+
+variable "enable_https" {
+    description = "Enable HTTPS listener"
+    type        = bool
+    default     = false
+  
+}
