@@ -1,0 +1,19 @@
+# ignore typical local/dev files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+dist/
+build/
+.env
+.env.local
+venv/
+env/
+.idea/
+.vscode/
+.git
+.gitignore
+.DS_Store
+tests/
+local_settings.py
