@@ -43,6 +43,10 @@ resource "aws_ecs_service" "app" {
         assign_public_ip = true
     }
 
+    deployment_controller {
+      type = "CODE_DEPLOY"
+    }
+
     dynamic "load_balancer" {
         for_each = var.alb_target_group_arn == "" ? [] : [var.alb_target_group_arn]
         content {
