@@ -31,3 +31,18 @@ module "ecr" {
     environment = "stg"
   
 }
+
+module "iam" {
+    source = "../../modules/iam"
+    environment = "stg"
+}
+
+module "codedeploy" {
+    source = "../../modules/codedeploy"
+    name ="codedeploy"
+    environment = "stg"
+    service_role_arn = module.iam.codedeploy_service_role_arn
+    ecs_cluster_name = module.ecs.cluster_name
+    ecs_service_name = module.ecs.service_name
+
+}
