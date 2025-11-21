@@ -4,9 +4,14 @@ output "alb_security_group_id" {
   
 }
 
-output "alb_target_group_arn" {
-    description = "The ARN of the ALB target group for the app"
-    value       = aws_lb_target_group.app_tg.arn
+output "alb_target_group_blue_arn" {
+    description = "The ARN of the blue ALB target group for the app"
+    value       = aws_lb_target_group.blue.arn
+}
+
+output "alb_target_group_green_arn" {
+    description = "The ARN of the green ALB target group for the app"
+    value       = aws_lb_target_group.green.arn
 }
 
 output "alb_dns_name" {

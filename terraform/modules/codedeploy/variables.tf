@@ -27,3 +27,27 @@ variable "ecs_service_name" {
     type        = string
   
 }
+
+variable "alb_listener_arn" {
+    description = "The ARN of the ALB listener for production traffic"
+    type        = string  
+
+}
+
+variable "target_group_blue_name" {
+    description = "The name of the blue target group"
+    type        = string  
+  
+}
+
+variable "target_group_green_name" {
+    description = "The name of the green target group"
+    type        = string  
+  
+}
+
+variable "alb_test_listener_arn" {
+    description = "The ARN of the ALB listener for test traffic"
+    type        = string
+  
+}
